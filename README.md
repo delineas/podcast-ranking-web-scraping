@@ -1,4 +1,4 @@
-# Podcast Ranking Web Scrapping #desafíoPython
+# Podcast Ranking Web Scraping #desafíoPython
 
 Aplicación de web scrapping para aprender python.
 
