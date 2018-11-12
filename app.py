@@ -19,20 +19,19 @@ def get_podcasts(resource, podcasts):
         Extrae el listado de podcasts 
         Devuelve una lista con el diccionario de elementos encontrados
     """
-    names = []
-    descs = []
-    urls = []
     for programs in resource.findAll("div", {"class": ["modulo-type-programa"]}):
-        for name in programs.select('meta[itemprop="name"]'):
-            names.append(name.attrs['content'])
-        for desc in programs.select('meta[itemprop="description"]'):
-            descs.append(desc.attrs['content'])
-        for url in programs.select('meta[itemprop="url"]'):
-            urls.append(url.attrs['content'])
+        podcasts.append(
+            {
+                'title': ["%s" % name.attrs['content'] for name in programs.select('meta[itemprop="name"]')][0],
+                'description': ["%s" % desc.attrs['content'] for desc in programs.select('meta[itemprop="description"]')][0],
+                'url': ["%s" % url.attrs['content'] for url in programs.select('meta[itemprop="url"]')][0],
+                'episodes': ["%s" % micro.getText().strip() for micro in programs.select('.microphone')][0]
+            }
+        )
 
-    podcasts = [names, descs, urls]
     return podcasts
 
 podcasts = []
-podcasts = get_podcasts(read_file("sandbox/content/podcast_internet_tecnologia_1.html"), podcasts)
+get_podcasts(read_file("sandbox/content/podcast_internet_tecnologia_1.html"), podcasts)
+get_podcasts(read_file("sandbox/content/podcast_internet_tecnologia_2.html"), podcasts)
 pprint(podcasts)
