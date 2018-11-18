@@ -10,7 +10,6 @@ class IvooxScraperClient:
         self.url_base = "https://www.ivoox.com/podcast-{0}_sc_f{1}_{2}.html"
         self.category_name = category_name
         self.category_id = category_id
-        self.params = {}
     
     def request(self, page):
         """
