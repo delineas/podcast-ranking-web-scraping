@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup
 from pprint import pprint
 import requests
+import json
+from ivoox_scraper_client import IvooxScraperClient
 
 def read_file(filepath):
     """
@@ -12,21 +14,6 @@ def read_file(filepath):
         print("El fichero no existe") 
     
     soup = BeautifulSoup(file.read(), "lxml")
-
-    return soup
-
-def get_url_content(url):
-    """
-        Extrae el contenido de unas URL específicas
-    """
-    res = requests.get(url)
-    # Levanta el error solo si algo fue mal (errores 400)
-    try:
-        res.raise_for_status()
-    except Exception as exc:
-        print('Problem! %s' % (exc))
-    
-    soup = BeautifulSoup(res.text, "lxml")
 
     return soup
 
@@ -50,9 +37,17 @@ def get_podcasts(resource, podcasts):
 
     return podcasts
 
+# podcasts = []
+# # get_podcasts(read_file("sandbox/content/podcast_internet_tecnologia_1.html"), podcasts)
+# # get_podcasts(read_file("sandbox/content/podcast_internet_tecnologia_2.html"), podcasts)
+# get_podcasts(get_url_content("https://www.ivoox.com/podcast-internet-tecnologia_sc_f445_1.html"), podcasts)
+# get_podcasts(get_url_content("https://www.ivoox.com/podcast-internet-tecnologia_sc_f445_2.html"), podcasts)
+# pprint(podcasts)
+
 podcasts = []
-# get_podcasts(read_file("sandbox/content/podcast_internet_tecnologia_1.html"), podcasts)
-# get_podcasts(read_file("sandbox/content/podcast_internet_tecnologia_2.html"), podcasts)
-get_podcasts(get_url_content("https://www.ivoox.com/podcast-internet-tecnologia_sc_f445_1.html"), podcasts)
-get_podcasts(get_url_content("https://www.ivoox.com/podcast-internet-tecnologia_sc_f445_2.html"), podcasts)
-pprint(podcasts)
+ivooxScrapperClient = IvooxScraperClient('internet-tecnologia',445)
+get_podcasts(ivooxScrapperClient.request(1), podcasts)
+get_podcasts(ivooxScrapperClient.request(2), podcasts)
+get_podcasts(ivooxScrapperClient.request(3), podcasts)
+get_podcasts(ivooxScrapperClient.request(4), podcasts)
+print(json.dumps(podcasts))
