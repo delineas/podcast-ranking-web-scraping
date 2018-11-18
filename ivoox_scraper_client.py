@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 class IvooxScraperClient:
     """
-        Clase para construir la URL y hacer la petición a ivoox
+        Clase para construir la URL y hacer la peticion a ivoox
         @see https://www.ivoox.com/podcast-internet-tecnologia_sc_f445_1.html
     """
     def __init__(self, category_name, category_id):
@@ -13,7 +13,7 @@ class IvooxScraperClient:
     
     def request(self, page):
         """
-            Generamos la petición para una página dada
+            Generamos la peticion para una pagina dada
         """
         url = self.__format_url(page)
         return self.__get_content(url)
@@ -26,7 +26,7 @@ class IvooxScraperClient:
 
     def __get_content(self, url):
         """
-            Clase privada que extrae el contenido de unas URL específicas
+            Clase privada que extrae el contenido de unas URL especificas
         """
         res = requests.get(url)
         # Levanta el error solo si algo fue mal (errores 400)
