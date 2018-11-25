@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ranking de Podcasts</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma-tooltip@2.0.2/dist/css/bulma-tooltip.min.css"
+    />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+    ></script>
+  </head>
+
+  <body>
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">Ranking de Podcasts de Tecnología</h1>
+          <h2 class="subtitle">
+            Basado en Ivoox.
+            <a
+              href="https://www.danielprimo.io/blog/web-scrapping-con-python-primeros-pasos-desafiopython"
+              >↗️ ¿Qué es esto?</a
+            >
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h3>
+          Ranking extraído en {{ date.day }}/{{ date.month }}/{{ date.year }}
+        </h3>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Posición</th>
+              <th>Título</th>
+              <th>Episodios</th>
+              <th>Enlace</th>
+            </tr>
+          </thead>
+          {% for item in ranking %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>
+              {{ item.title }}
+              <button
+                class="tooltip is-tooltip-multiline"
+                data-tooltip="{{item.description}}"
+              >
+                <i class="fas fa-question-circle" style="color: #999"></i>
+              </button>
+            </td>
+            <td>{{ item.episodes }}</td>
+            <td>
+              <a href="{{ item.url }}"><i class="fas fa-link"></i> Enlace</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </section>
+  </body>
+</html>
