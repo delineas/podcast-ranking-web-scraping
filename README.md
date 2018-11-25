@@ -12,8 +12,14 @@ Después de instalar Python 3.x y el gestor de paquetes `pip`
 pip install -r requirements.txt
 ```
 
-### Ejecución
+### Ejecución de scraping
 
 ```bash
 python app.py
+```
+
+### Visualización de los últimos datos capturados
+
+```bash
+FLASK_APP=main.py FLASK_DEBUG=1 flask run
 ```
