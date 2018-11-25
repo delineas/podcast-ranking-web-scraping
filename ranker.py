@@ -15,7 +15,7 @@ class Ranker:
             Construye el listado
         """
         ivooxScrapperClient = IvooxScraperClient(self.category_name, self.category_id)
-        for page in range(1, self.max_page):
+        for page in range(1, self.max_page+1):
             self.__parse_resource(ivooxScrapperClient.request(page))
         
         return self.podcasts
