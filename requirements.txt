@@ -2,3 +2,4 @@ beautifulsoup4==4.6.3
 lxml==4.2.5
 requests>=2.20.0
 Flask==1.0.2
+APScheduler==3.0.0
