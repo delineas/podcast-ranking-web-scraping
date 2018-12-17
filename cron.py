@@ -5,7 +5,8 @@ import datetime
 
 scheduler = BlockingScheduler()
 
-@scheduler.scheduled_job('cron', day_of_week='mon', hour=12)
+# , day_of_week='mon', hour=12
+@scheduler.scheduled_job('cron', minute=0) 
 def scheduled_job():
     """
         This job is run every monday at 12.
