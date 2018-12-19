@@ -16,6 +16,12 @@ class Storage:
             data = json.load(file)
         return data
 
+    def check_files_exists():
+        files = glob.glob('storage/ranking*') 
+        if not files:
+            return False
+        return True 
+
     def last_file():
         files = glob.glob('storage/ranking*') 
         latest = max(files, key=os.path.getctime)
